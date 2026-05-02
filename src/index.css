@@ -1,17 +1,159 @@
-@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Archivo+Black&display=swap");
 @import "tailwindcss";
 
-* {
-  box-sizing: border-box;
+@theme {
+  --font-display: "Archivo Black", sans-serif;
+  --font-sans: "Space Grotesk", sans-serif;
+
+  --color-cream: #fff8e6;
+  --color-paper: #fffdf6;
+  --color-ink: #111111;
+  --color-yellow: #ffd84d;
+  --color-pink: #ff7aab;
+  --color-blue: #69b7ff;
+  --color-green: #95e06c;
+  --color-orange: #ff9b54;
+  --color-red: #ff6b57;
+
+  --animate-wiggle-in: wiggle-in 0.45s ease-out;
+
+  @keyframes wiggle-in {
+    0% {
+      transform: translateY(18px) rotate(-2deg);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 1;
+    }
+  }
 }
 
-body {
-  margin: 0;
-  font-family: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background-color: #f5f7fb;
-  color: #111827;
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    min-width: 320px;
+    font-family: var(--font-sans);
+    background:
+      radial-gradient(circle at top left, #ff7aab 0, transparent 24%),
+      radial-gradient(circle at top right, #69b7ff 0, transparent 20%),
+      linear-gradient(180deg, #fff8e6 0%, #fffdf6 100%);
+    color: var(--color-ink);
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(17, 17, 17, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(17, 17, 17, 0.08) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
+    opacity: 0.45;
+    z-index: -1;
+  }
+
+  button,
+  input,
+  select {
+    font: inherit;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  #root {
+    min-height: 100vh;
+  }
 }
 
-#root {
-  min-height: 100vh;
+@layer components {
+  .neo-panel {
+    border: 3px solid var(--color-ink);
+    border-radius: 1.5rem;
+    background: var(--color-paper);
+    box-shadow: 8px 8px 0 0 var(--color-ink);
+  }
+
+  .neo-panel-tight {
+    border: 3px solid var(--color-ink);
+    border-radius: 1rem;
+    background: var(--color-paper);
+    box-shadow: 6px 6px 0 0 var(--color-ink);
+  }
+
+  .neo-button {
+    border: 3px solid var(--color-ink);
+    border-radius: 999px;
+    background: var(--color-yellow);
+    color: var(--color-ink);
+    box-shadow: 5px 5px 0 0 var(--color-ink);
+    transition:
+      transform 120ms ease,
+      box-shadow 120ms ease,
+      background-color 120ms ease;
+  }
+
+  .neo-button:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 7px 7px 0 0 var(--color-ink);
+  }
+
+  .neo-button:active {
+    transform: translate(3px, 3px);
+    box-shadow: 2px 2px 0 0 var(--color-ink);
+  }
+
+  .neo-button:disabled {
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: 0 0 0 0 var(--color-ink);
+    background: #c9c9c9;
+  }
+
+  .neo-tag {
+    border: 2px solid var(--color-ink);
+    border-radius: 999px;
+    padding: 0.45rem 0.9rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
+
+  .neo-input {
+    border: 3px solid var(--color-ink);
+    border-radius: 1rem;
+    background: white;
+    box-shadow: inset 0 -4px 0 rgba(17, 17, 17, 0.08);
+  }
+
+  .neo-dash {
+    border: 3px dashed var(--color-ink);
+    border-radius: 1.5rem;
+    background: rgba(255, 255, 255, 0.8);
+  }
+
+  .neo-display {
+    font-family: var(--font-display);
+    letter-spacing: 0.02em;
+    line-height: 0.95;
+    text-transform: uppercase;
+  }
 }

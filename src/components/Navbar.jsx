@@ -13,18 +13,29 @@ function Navbar() {
   const [open, setOpen] = useState(false);
 
   const linkClass = ({ isActive }) =>
-    `px-3 py-1 rounded-full text-sm font-semibold transition-colors ${
-      isActive ? "bg-sky-500 text-white" : "text-slate-600 hover:text-sky-600"
+    `rounded-full border-[3px] border-ink px-4 py-2 text-sm font-bold uppercase tracking-[0.12em] transition ${
+      isActive
+        ? "bg-yellow shadow-[4px_4px_0_0_#111111]"
+        : "bg-white hover:-translate-y-0.5 hover:shadow-[4px_4px_0_0_#111111]"
     }`;
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-md bg-white/70 shadow-sm">
-      <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-4 md:px-8">
-        <NavLink to="/" className="flex items-center gap-2 font-bold text-sky-600">
-          <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-sky-500 text-white shadow-lg">
+    <header className="sticky top-0 z-50 px-4 pt-4 md:px-8">
+      <div className="neo-panel mx-auto flex w-full max-w-6xl items-center justify-between gap-4 bg-paper px-4 py-4 md:px-6">
+        <NavLink
+          to="/"
+          className="flex items-center gap-3"
+          onClick={() => setOpen(false)}
+        >
+          <span className="flex h-12 w-12 items-center justify-center rounded-2xl border-[3px] border-ink bg-pink text-ink">
             <FontAwesomeIcon icon={faCameraRetro} className="text-lg" />
           </span>
-          <span className="text-lg md:text-xl">Fotokeun</span>
+          <div className="leading-none">
+            <span className="neo-display block text-lg md:text-xl">Fotokeun</span>
+            <span className="mt-1 block text-[11px] font-bold uppercase tracking-[0.22em] text-ink/70">
+              Browser Photobooth
+            </span>
+          </div>
         </NavLink>
 
         <nav className="hidden items-center gap-2 md:flex">
@@ -38,7 +49,7 @@ function Navbar() {
         <button
           type="button"
           onClick={() => setOpen((prev) => !prev)}
-          className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-slate-600 shadow-md transition md:hidden"
+          className="flex h-11 w-11 items-center justify-center rounded-full border-[3px] border-ink bg-blue text-ink shadow-[4px_4px_0_0_#111111] transition md:hidden"
           aria-label="Toggle navigation"
         >
           <FontAwesomeIcon icon={open ? faXmark : faBars} className="text-lg" />
@@ -46,17 +57,17 @@ function Navbar() {
       </div>
 
       {open && (
-        <div className="border-t border-slate-200 bg-white/90 md:hidden">
-          <nav className="mx-auto flex w-full max-w-6xl flex-col gap-1 px-4 py-3 md:px-8">
+        <div className="mx-auto mt-3 w-full max-w-6xl md:hidden">
+          <nav className="neo-panel flex flex-col gap-2 bg-paper px-4 py-4">
             {navItems.map((item) => (
               <NavLink
                 key={item.to}
                 to={item.to}
                 className={({ isActive }) =>
-                  `rounded-xl px-4 py-3 text-base font-semibold transition ${
+                  `rounded-2xl border-[3px] border-ink px-4 py-3 text-base font-bold uppercase tracking-[0.1em] transition ${
                     isActive
-                      ? "bg-sky-500/90 text-white"
-                      : "text-slate-600 hover:bg-slate-100"
+                      ? "bg-yellow shadow-[4px_4px_0_0_#111111]"
+                      : "bg-white hover:-translate-y-0.5 hover:shadow-[4px_4px_0_0_#111111]"
                   }`
                 }
                 end={item.to === "/"}

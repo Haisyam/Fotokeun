@@ -25,7 +25,7 @@ function App() {
   const location = useLocation();
 
   return (
-    <div className="flex min-h-screen flex-col bg-gradient-to-br from-slate-50 via-white to-sky-50 text-slate-900">
+    <div className="flex min-h-screen flex-col text-ink">
       <Navbar />
       <AnimatePresence mode="wait" initial={false}>
         <Routes location={location} key={location.pathname}>
